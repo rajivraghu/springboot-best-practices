@@ -1,5 +1,6 @@
 package com.javatechie.controller;
 
+import com.javatechie.aspect.LogAspect;
 import com.javatechie.dto.APIResponse;
 import com.javatechie.dto.ProductRequestDTO;
 import com.javatechie.dto.ProductResponseDTO;
@@ -28,8 +29,10 @@ public class ProductController {
 
 
     @PostMapping
-    public ResponseEntity<APIResponse> createNewProduct(@RequestBody @Valid ProductRequestDTO productRequestDTO) {
+    @LogAspect
+    public ResponseEntity<APIResponse> createNewProduct(@RequestBody @Valid ProductRequestDTO productRequestDTO) throws InterruptedException {
 
+        Thread.sleep(5000);
         log.info("ProductController::createNewProduct request body {}", ValueMapper.jsonAsString(productRequestDTO));
 
         ProductResponseDTO productResponseDTO = productService.createNewProduct(productRequestDTO);
