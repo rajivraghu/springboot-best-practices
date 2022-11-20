@@ -1,6 +1,8 @@
 package com.javatechie.controller;
 
 import com.javatechie.aspect.LogAspect;
+import com.javatechie.aspect.LogRequest;
+import com.javatechie.aspect.LogResponse;
 import com.javatechie.dto.APIResponse;
 import com.javatechie.dto.ProductRequestDTO;
 import com.javatechie.dto.ProductResponseDTO;
@@ -29,6 +31,8 @@ public class ProductController {
 
 
     @PostMapping
+    @LogRequest
+    @LogResponse
     @LogAspect
     public ResponseEntity<APIResponse> createNewProduct(@RequestBody @Valid ProductRequestDTO productRequestDTO) throws InterruptedException {
 
